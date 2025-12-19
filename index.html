@@ -1,485 +1,308 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>麵麵科技 MienMien Tech | 法幣與加密穩定幣套利專家</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>麵麵科技 MienMien Tech | 法幣與加密穩定幣套利專家</title>
 
-  <!-- Premium fonts (optional, fallback safe) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      /* Premium green palette */
-      --brand-900:#0b2a1f;
-      --brand-800:#0f3a2b;
-      --brand-700:#11543b;
-      --brand-600:#0f6b47;
-      --brand-500:#17a36b;
-      --brand-400:#2dd4a3;
+<style>
+:root{
+  /* Ultra Luxury Dark Red & Gold */
+  --black:#070304;
+  --deep-red:#120607;
+  --wine:#1c0b0d;
+  --crimson:#3a0f14;
 
-      --accent:#b7f7d9;     /* soft mint highlight */
-      --gold:#d7c28a;       /* subtle luxe accent */
-      --ink:#0d1412;
-      --muted:#4b5a54;
+  --gold:#cbb47a;
+  --gold-soft:#9e8b5c;
 
-      --bg:#07110e;         /* deep premium background */
-      --panel:rgba(255,255,255,.06);
-      --panel-2:rgba(255,255,255,.08);
-      --border:rgba(255,255,255,.12);
+  --text-main:rgba(255,255,255,.88);
+  --text-soft:rgba(255,255,255,.62);
 
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --shadow-soft: 0 10px 30px rgba(0,0,0,.28);
-      --radius-xl: 18px;
-      --radius-lg: 14px;
-      --radius-md: 12px;
-    }
+  --border:rgba(255,255,255,.08);
+  --panel:rgba(255,255,255,.04);
 
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      color:rgba(255,255,255,.86);
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(45,212,163,.22), transparent 55%),
-        radial-gradient(900px 500px at 85% 15%, rgba(23,163,107,.18), transparent 60%),
-        radial-gradient(700px 500px at 50% 110%, rgba(215,194,138,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg) 0%, #071a14 100%);
-      font-family: "Inter","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,-apple-system,sans-serif;
-      line-height:1.65;
-      letter-spacing:.2px;
-    }
+  --shadow:0 30px 80px rgba(0,0,0,.65);
+  --shadow-soft:0 14px 36px rgba(0,0,0,.45);
 
-    /* Subtle noise for luxury texture */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.06;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
-    }
+  --radius-xl:20px;
+  --radius-md:14px;
+}
 
-    a{ color:inherit; }
-    ::selection{ background: rgba(45,212,163,.25); }
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
 
-    /* Layout */
-    .container{
-      padding: 84px 10%;
-      position:relative;
-      z-index:1;
-    }
-    @media (max-width: 900px){
-      .container{ padding: 70px 6%; }
-    }
+body{
+  margin:0;
+  font-family:"Inter","Noto Sans TC","Microsoft JhengHei",system-ui;
+  color:var(--text-main);
+  background:
+    radial-gradient(900px 500px at 70% -10%, rgba(58,15,20,.25), transparent 60%),
+    radial-gradient(700px 400px at 10% 10%, rgba(28,11,13,.45), transparent 55%),
+    linear-gradient(180deg, var(--black), var(--deep-red));
+  letter-spacing:.3px;
+  line-height:1.65;
+}
 
-    /* Navbar */
-    nav{
-      position:sticky; top:0; z-index:1000;
-      padding: 14px 10%;
-      display:flex; align-items:center; justify-content:space-between;
-      background: rgba(6,16,13,.55);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    @media (max-width: 900px){
-      nav{ padding: 12px 6%; }
-    }
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+}
 
-    .logo{
-      display:flex; align-items:baseline; gap:10px;
-      font-weight:700;
-      letter-spacing:.6px;
-      font-size: 1.05rem;
-      color: rgba(255,255,255,.92);
-    }
-    .logo::before{
-      content:"";
-      width:10px; height:10px;
-      border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, var(--accent), var(--brand-500));
-      box-shadow: 0 0 0 6px rgba(45,212,163,.12);
-      display:inline-block;
-      transform: translateY(-1px);
-    }
+nav{
+  position:sticky; top:0; z-index:1000;
+  padding:18px 10%;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(5,2,3,.72);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(18px);
+}
 
-    .lang-switch button{
-      appearance:none;
-      border: 1px solid rgba(255,255,255,.14);
-      background: linear-gradient(135deg, rgba(23,163,107,.22), rgba(255,255,255,.06));
-      color: rgba(255,255,255,.92);
-      padding: 10px 16px;
-      border-radius: 999px;
-      cursor:pointer;
-      font-size:.92rem;
-      font-weight:600;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .lang-switch button:hover{
-      transform: translateY(-1px);
-      border-color: rgba(45,212,163,.35);
-      background: linear-gradient(135deg, rgba(45,212,163,.22), rgba(255,255,255,.06));
-    }
-    .lang-switch button:active{ transform: translateY(0px) scale(.99); }
+.logo{
+  display:flex; gap:10px; align-items:baseline;
+  font-weight:700;
+  letter-spacing:.8px;
+}
+.logo::before{
+  content:"";
+  width:9px; height:9px;
+  border-radius:50%;
+  background:radial-gradient(circle, var(--gold), var(--gold-soft));
+  box-shadow:0 0 0 6px rgba(203,180,122,.15);
+}
 
-    /* Hero */
-    .hero{
-      padding: 124px 10% 92px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-      z-index:1;
-    }
-    @media (max-width: 900px){
-      .hero{ padding: 104px 6% 72px; }
-    }
+.lang-switch button{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-soft);
+  padding:9px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:600;
+}
 
-    .hero::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(900px 420px at 50% 20%, rgba(45,212,163,.20), transparent 60%),
-        linear-gradient(135deg, rgba(17,84,59,.55), rgba(11,42,31,.25));
-      opacity: 1;
-      z-index:-1;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      width: 720px; height: 720px;
-      left: 50%; top: -340px;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, rgba(45,212,163,.24), transparent 62%);
-      filter: blur(2px);
-      z-index:-1;
-    }
+.hero{
+  padding:140px 10% 110px;
+  text-align:center;
+  position:relative;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  width:620px; height:620px;
+  top:-360px; left:50%;
+  transform:translateX(-50%);
+  background:radial-gradient(circle, rgba(203,180,122,.18), transparent 65%);
+  z-index:-1;
+}
 
-    .hero h1{
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 4.2vw, 3.25rem);
-      line-height: 1.15;
-      letter-spacing: .2px;
-      color: rgba(255,255,255,.95);
-      text-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    .hero p{
-      margin: 0 auto;
-      max-width: 860px;
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
-      color: rgba(255,255,255,.78);
-    }
+.hero h1{
+  margin:0 0 14px;
+  font-size:clamp(2rem,4.2vw,3.25rem);
+  text-shadow:0 18px 40px rgba(0,0,0,.65);
+}
+.hero p{
+  max-width:860px;
+  margin:0 auto;
+  color:var(--text-soft);
+}
 
-    /* Section title */
-    .section-title{
-      text-align:center;
-      margin: 0 0 52px;
-      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
-      font-weight: 700;
-      color: rgba(255,255,255,.92);
-      position:relative;
-    }
-    .section-title::after{
-      content:"";
-      display:block;
-      width: 74px;
-      height: 3px;
-      margin: 14px auto 0;
-      background: linear-gradient(90deg, transparent, var(--brand-400), var(--gold), transparent);
-      border-radius:999px;
-      opacity:.95;
-    }
+.container{ padding:90px 10%; }
 
-    /* Services grid */
-    .services{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 22px;
-      margin-bottom: 64px;
-    }
+.section-title{
+  text-align:center;
+  margin:0 0 56px;
+  font-size:clamp(1.6rem,2.6vw,2.2rem);
+  font-weight:700;
+}
+.section-title::after{
+  content:"";
+  display:block;
+  width:72px; height:2px;
+  margin:18px auto 0;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
 
-    .card{
-      position:relative;
-      padding: 28px 26px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow-soft);
-      overflow:hidden;
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(520px 260px at 15% 10%, rgba(45,212,163,.16), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .card:hover{
-      transform: translateY(-6px);
-      border-color: rgba(45,212,163,.30);
-      box-shadow: var(--shadow);
-    }
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:26px;
+  margin-bottom:80px;
+}
 
-    .card h3{
-      margin: 0 0 10px;
-      font-size: 1.22rem;
-      color: rgba(255,255,255,.92);
-      letter-spacing:.2px;
-    }
-    .card p{
-      margin:0;
-      color: rgba(255,255,255,.76);
-    }
+.card{
+  padding:30px 28px;
+  border-radius:var(--radius-xl);
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-soft);
+  transition:.35s ease;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(203,180,122,.35);
+  box-shadow:var(--shadow);
+}
 
-    .highlight-text{
-      color: var(--accent);
-      font-weight:700;
-      text-shadow: 0 0 18px rgba(45,212,163,.12);
-    }
+.highlight-text{
+  color:var(--gold);
+  font-weight:700;
+}
 
-    /* Contact */
-    .contact-section{
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 34px;
-      border-radius: calc(var(--radius-xl) + 2px);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .contact-section::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(720px 320px at 50% 0%, rgba(45,212,163,.14), transparent 65%);
-      pointer-events:none;
-      opacity:.9;
-    }
+.contact-section{
+  max-width:680px;
+  margin:0 auto;
+  padding:40px;
+  border-radius:var(--radius-xl);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
 
-    .form-group{ margin-bottom: 18px; position:relative; z-index:1; }
-    .form-group label{
-      display:block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      color: rgba(255,255,255,.88);
-    }
-    .form-group input, .form-group textarea{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.88);
-      outline:none;
-      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
-    }
-    .form-group input::placeholder, .form-group textarea::placeholder{
-      color: rgba(255,255,255,.45);
-    }
-    .form-group input:focus, .form-group textarea:focus{
-      border-color: rgba(45,212,163,.45);
-      box-shadow: 0 0 0 4px rgba(45,212,163,.12);
-      transform: translateY(-1px);
-    }
-    .form-group textarea{ height: 110px; resize: vertical; }
+.form-group{ margin-bottom:18px; }
+.form-group label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:700;
+  color:var(--text-soft);
+}
+.form-group input,
+.form-group textarea{
+  width:100%;
+  padding:13px;
+  border-radius:var(--radius-md);
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.35);
+  color:#fff;
+}
+.form-group textarea{ height:110px; }
 
-    .submit-btn{
-      width:100%;
-      padding: 14px 18px;
-      border:none;
-      border-radius: 999px;
-      cursor:pointer;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing:.4px;
-      color: rgba(8,16,13,.95);
-      background:
-        linear-gradient(135deg, var(--brand-400), var(--brand-500) 55%, var(--gold) 140%);
-      box-shadow: 0 16px 34px rgba(23,163,107,.22);
-      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
-      position:relative;
-      z-index:1;
-    }
-    .submit-btn:hover{
-      transform: translateY(-2px);
-      filter: brightness(1.04);
-      box-shadow: 0 22px 44px rgba(23,163,107,.28);
-    }
-    .submit-btn:active{ transform: translateY(0px) scale(.99); }
-    .submit-btn:disabled{
-      background: rgba(255,255,255,.18);
-      color: rgba(255,255,255,.55);
-      cursor:not-allowed;
-      box-shadow:none;
-    }
+.submit-btn{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:999px;
+  font-size:1rem;
+  font-weight:800;
+  letter-spacing:.6px;
+  background:linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color:#1a1208;
+  cursor:pointer;
+  box-shadow:0 18px 40px rgba(203,180,122,.35);
+}
+.submit-btn:hover{
+  transform:translateY(-2px);
+}
 
-    /* Footer */
-    footer{
-      margin-top: 84px;
-      padding: 34px 10%;
-      text-align:center;
-      color: rgba(255,255,255,.55);
-      border-top: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-    }
-    @media (max-width: 900px){
-      footer{ padding: 28px 6%; }
-    }
+footer{
+  margin-top:100px;
+  padding:36px 10%;
+  text-align:center;
+  color:rgba(255,255,255,.45);
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,.35);
+}
 
-    /* Language toggle */
-    .lang-en{ display:none; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; scroll-behavior:auto !important; }
-    }
-  </style>
+.lang-en{ display:none; }
+</style>
 </head>
 
 <body>
-  <nav>
-    <div class="logo">
-      <span class="lang-zh">麵麵科技有限公司</span>
-      <span class="lang-en">MienMien Tech</span>
-    </div>
-    <div class="lang-switch">
-      <button onclick="switchLang()">EN / 中文</button>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <h1 class="lang-zh">跨越法幣與數字資產的套利專家</h1>
-    <h1 class="lang-en">Expert in Fiat and Digital Asset Arbitrage</h1>
-    <p class="lang-zh">結合傳統匯市與加密金融，打造全方位的穩定收益模型</p>
-    <p class="lang-en">Combining traditional Forex with Crypto Finance for comprehensive steady returns.</p>
-  </header>
+<nav>
+  <div class="logo">
+    <span class="lang-zh">麵麵科技有限公司</span>
+    <span class="lang-en">MienMien Tech</span>
+  </div>
+  <div class="lang-switch">
+    <button onclick="switchLang()">EN / 中文</button>
+  </div>
+</nav>
 
-  <div class="container">
-    <h2 class="section-title lang-zh">核心業務</h2>
-    <h2 class="section-title lang-en">Core Services</h2>
+<header class="hero">
+  <h1 class="lang-zh">跨越法幣與數字資產的套利專家</h1>
+  <h1 class="lang-en">Expert in Fiat and Digital Asset Arbitrage</h1>
+  <p class="lang-zh">結合傳統匯市與加密金融，打造全方位的穩定收益模型</p>
+  <p class="lang-en">Combining traditional Forex with Crypto Finance for comprehensive steady returns.</p>
+</header>
 
-    <div class="services">
-      <div class="card">
-        <h3 class="lang-zh"><span class="highlight-text">美元穩定幣 / 美元</span> 跨市套利</h3>
-        <h3 class="lang-en"><span class="highlight-text">USDT(USDC) / USD</span> Cross-Market Arbitrage</h3>
-        <p class="lang-zh">精準監控全球交易平台中 <span class="highlight-text">美元穩定幣</span> 與美元的微小溢價差異。透過高頻算法，在穩定幣脫鉤或溢價時快速進場，鎖定低風險收益。</p>
-        <p class="lang-en">Precision monitoring of premium differences between <span class="highlight-text">USDT(USDC)</span> and USD across global platforms. Using algorithms to capture gains during stablecoin fluctuations.</p>
-      </div>
+<div class="container">
+  <h2 class="section-title lang-zh">核心業務</h2>
+  <h2 class="section-title lang-en">Core Services</h2>
 
-      <div class="card">
-        <h3 class="lang-zh">全球法幣對沖</h3>
-        <h3 class="lang-en">Global Fiat Hedging</h3>
-        <p class="lang-zh">利用各國銀行間的即時匯差，透過多節點部署實現自動化交易，有效避開單一貨幣波動風險。</p>
-        <p class="lang-en">Capitalizing on real-time bank exchange rate gaps via multi-node deployment to automate trades and mitigate single currency risks.</p>
-      </div>
-
-      <div class="card">
-        <h3 class="lang-zh">AI 自動化風控</h3>
-        <h3 class="lang-en">AI Automated Risk Control</h3>
-        <p class="lang-zh">24/7 全天候監控流動性深度與市場深度，確保套利路徑在極端行情下依然保有高度安全性。</p>
-        <p class="lang-en">24/7 monitoring of liquidity and market depth, ensuring arbitrage paths remain highly secure during extreme volatility.</p>
-      </div>
+  <div class="services">
+    <div class="card">
+      <h3 class="lang-zh"><span class="highlight-text">美元穩定幣 / 美元</span> 跨市套利</h3>
+      <h3 class="lang-en"><span class="highlight-text">USDT(USDC) / USD</span> Cross-Market Arbitrage</h3>
+      <p class="lang-zh">精準監控全球交易平台中 <span class="highlight-text">美元穩定幣</span> 與美元的微小溢價差異。透過高頻算法，在穩定幣脫鉤或溢價時快速進場，鎖定低風險收益。</p>
+      <p class="lang-en">Precision monitoring of premium differences between <span class="highlight-text">USDT(USDC)</span> and USD across global platforms. Using algorithms to capture gains during stablecoin fluctuations.</p>
     </div>
 
-    <h2 class="section-title lang-zh" id="contact">聯絡我們</h2>
-    <h2 class="section-title lang-en" id="contact-en">Contact Us</h2>
+    <div class="card">
+      <h3 class="lang-zh">全球法幣對沖</h3>
+      <h3 class="lang-en">Global Fiat Hedging</h3>
+      <p class="lang-zh">利用各國銀行間的即時匯差，透過多節點部署實現自動化交易，有效避開單一貨幣波動風險。</p>
+      <p class="lang-en">Capitalizing on real-time bank exchange rate gaps via multi-node deployment to automate trades and mitigate single currency risks.</p>
+    </div>
 
-    <div class="contact-section">
-      <form id="contactForm">
-        <div class="form-group">
-          <label class="lang-zh">姓名</label>
-          <label class="lang-en">Name</label>
-          <input type="text" id="name" placeholder="Your Name" required />
-        </div>
-
-        <div class="form-group">
-          <label class="lang-zh">電子信箱</label>
-          <label class="lang-en">Email</label>
-          <input type="email" id="email" placeholder="Email Address" required />
-        </div>
-
-        <div class="form-group">
-          <label class="lang-zh">訊息</label>
-          <label class="lang-en">Message</label>
-          <textarea id="message" placeholder="Your inquiry..."></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">
-          <span class="lang-zh">送出訊息</span>
-          <span class="lang-en">Send Message</span>
-        </button>
-      </form>
+    <div class="card">
+      <h3 class="lang-zh">AI 自動化風控</h3>
+      <h3 class="lang-en">AI Automated Risk Control</h3>
+      <p class="lang-zh">24/7 全天候監控流動性深度與市場深度，確保套利路徑在極端行情下依然保有高度安全性。</p>
+      <p class="lang-en">24/7 monitoring of liquidity and market depth, ensuring arbitrage paths remain highly secure during extreme volatility.</p>
     </div>
   </div>
 
-  <footer>
-    <p>&copy; 2025 麵麵科技有限公司 MienMien Technology Co., Ltd. All Rights Reserved.</p>
-  </footer>
+  <h2 class="section-title lang-zh" id="contact">聯絡我們</h2>
+  <h2 class="section-title lang-en" id="contact-en">Contact Us</h2>
 
-  <script>
-    let currentLang = "zh";
+  <div class="contact-section">
+    <form id="contactForm">
+      <div class="form-group">
+        <label class="lang-zh">姓名</label>
+        <label class="lang-en">Name</label>
+        <input type="text" id="name" required />
+      </div>
 
-    function switchLang() {
-      const zhElements = document.querySelectorAll(".lang-zh");
-      const enElements = document.querySelectorAll(".lang-en");
+      <div class="form-group">
+        <label class="lang-zh">電子信箱</label>
+        <label class="lang-en">Email</label>
+        <input type="email" id="email" required />
+      </div>
 
-      if (currentLang === "zh") {
-        zhElements.forEach((el) => (el.style.display = "none"));
-        enElements.forEach((el) => (el.style.display = "block"));
-        currentLang = "en";
-      } else {
-        zhElements.forEach((el) => (el.style.display = "block"));
-        enElements.forEach((el) => (el.style.display = "none"));
-        currentLang = "zh";
-      }
-    }
+      <div class="form-group">
+        <label class="lang-zh">訊息</label>
+        <label class="lang-en">Message</label>
+        <textarea id="message"></textarea>
+      </div>
 
-    // --- Google Sheets 串接邏輯 (保留原本的 URL) ---
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbwOblKF_bNV1xsMJc4wWhdqLlkns2wyNRZXXF--Jz058sf0V7XyCt0PkDF071SNCxhL5Q/exec";
-    const form = document.getElementById("contactForm");
-    const btn = document.getElementById("submitBtn");
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="lang-zh">送出訊息</span>
+        <span class="lang-en">Send Message</span>
+      </button>
+    </form>
+  </div>
+</div>
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      btn.disabled = true;
-      const originalContent = btn.innerHTML;
-      btn.innerHTML = currentLang === "zh" ? "傳送中..." : "Sending...";
+<footer>
+  <p>&copy; 2025 麵麵科技有限公司 MienMien Technology Co., Ltd. All Rights Reserved.</p>
+</footer>
 
-      const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value,
-      };
+<script>
+let currentLang="zh";
+function switchLang(){
+  document.querySelectorAll(".lang-zh").forEach(e=>e.style.display=currentLang==="zh"?"none":"block");
+  document.querySelectorAll(".lang-en").forEach(e=>e.style.display=currentLang==="zh"?"block":"none");
+  currentLang=currentLang==="zh"?"en":"zh";
+}
+</script>
 
-      fetch(scriptURL, {
-        method: "POST",
-        mode: "no-cors",
-        cache: "no-cache",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-        .then(() => {
-          const successMsg =
-            currentLang === "zh"
-              ? "感謝您的聯絡！資料已成功儲存。"
-              : "Thank you! Your message has been saved.";
-          alert(successMsg);
-          form.reset();
-        })
-        .catch((error) => {
-          console.error("Error!", error.message);
-          alert("Oops! Something went wrong.");
-        })
-        .finally(() => {
-          btn.disabled = false;
-          btn.innerHTML = originalContent;
-        });
-    });
-  </script>
 </body>
 </html>
