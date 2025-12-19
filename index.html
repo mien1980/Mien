@@ -7,301 +7,227 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Premium Red & Gold palette */
-      --brand-900:#1a0507; /* 深沉黑紅 */
-      --brand-800:#2d0b0e; /* 勃根地紅 */
-      --brand-700:#4a0e13;
-      --brand-600:#7a161f;
-      --brand-500:#a31d2a; /* 核心紅 */
-      --brand-400:#d43d4d;
+      /* Silver & Deep Ruby Palette */
+      --brand-main: #9b111e;    /* Ruby Red */
+      --brand-dark: #4a0404;
+      
+      --silver-light: #f5f5f7;  /* 亮銀白 */
+      --silver-mid: #c0c0c0;    /* 經典銀 */
+      --silver-dark: #8e8e93;   /* 霧面銀 */
 
-      --accent:#f7d7b7;     /* 柔和香檳粉 */
-      --gold:#d7c28a;       /* 經典奢華金 */
-      --gold-bright:#f4e3b5;
-      --ink:#0d0a0a;
-      --muted:#6e5a5b;
-
-      --bg:#0a0505;         /* 極致深黑 */
-      --panel:rgba(255,255,255,.04);
-      --panel-2:rgba(255,255,255,.07);
-      --border:rgba(215,194,138,.15); /* 金色細邊框 */
-
-      --shadow: 0 20px 60px rgba(0,0,0,.5);
-      --shadow-soft: 0 10px 30px rgba(0,0,0,.4);
-      --radius-xl: 20px;
-      --radius-lg: 14px;
-      --radius-md: 12px;
+      --bg-black: #050505;      /* 深邃黑 */
+      --bg-panel: rgba(255, 255, 255, 0.05);
+      
+      --border-silver: rgba(192, 192, 192, 0.2);
+      --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      
+      --radius-xl: 12px; /* 縮小半徑，更顯利落與科技感 */
     }
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      color:rgba(255,255,255,.9);
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(163,29,42,.15), transparent 55%),
-        radial-gradient(900px 500px at 85% 15%, rgba(215,194,138,.12), transparent 60%),
-        radial-gradient(700px 500px at 50% 110%, rgba(122,22,31,.15), transparent 55%),
-        linear-gradient(180deg, var(--bg) 0%, #1a0507 100%);
-      font-family: "Inter","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,-apple-system,sans-serif;
-      line-height:1.65;
-      letter-spacing:.3px;
+      color: var(--silver-light);
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(155, 17, 30, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(192, 192, 192, 0.08) 0%, transparent 40%),
+        var(--bg-black);
+      font-family: "Inter","Noto Sans TC",system-ui,-apple-system,sans-serif;
+      line-height:1.7;
+      letter-spacing:.5px;
     }
 
-    /* Subtle noise for luxury texture */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.04;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
+    /* Noise texture */
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
     }
 
-    a{ color:inherit; text-decoration:none; }
-    ::selection{ background: rgba(215,194,138,.25); color: #fff; }
-
-    /* Layout */
-    .container{
-      padding: 90px 10%;
-      position:relative;
-      z-index:1;
-    }
-    @media (max-width: 900px){
-      .container{ padding: 70px 6%; }
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 1000;
+      padding: 20px 10%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(5, 5, 5, 0.8);
+      border-bottom: 1px solid var(--border-silver);
+      backdrop-filter: blur(20px);
     }
 
-    /* Navbar */
-    nav{
-      position:sticky; top:0; z-index:1000;
-      padding: 16px 10%;
-      display:flex; align-items:center; justify-content:space-between;
-      background: rgba(10,5,5,0.75);
-      border-bottom: 1px solid rgba(215,194,138,.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #ffffff;
+      display: flex; align-items: center; gap: 12px;
+      letter-spacing: 2px;
     }
-    @media (max-width: 900px){
-      nav{ padding: 14px 6%; }
-    }
-
-    .logo{
-      display:flex; align-items:center; gap:12px;
-      font-weight:700;
-      letter-spacing:1px;
-      font-size: 1.1rem;
-      color: var(--gold-bright);
-    }
-    .logo::before{
-      content:"";
-      width:12px; height:12px;
-      background: linear-gradient(135deg, var(--gold), var(--brand-500));
-      box-shadow: 0 0 15px rgba(215,194,138,0.4);
-      display:inline-block;
+    .logo::before {
+      content: "";
+      width: 14px; height: 14px;
+      background: var(--brand-main);
       transform: rotate(45deg);
+      box-shadow: 0 0 15px var(--brand-main);
     }
 
-    .lang-switch button{
-      appearance:none;
-      border: 1px solid rgba(215,194,138,.2);
-      background: linear-gradient(135deg, rgba(122,22,31,.2), rgba(255,255,255,.03));
-      color: var(--gold);
-      padding: 8px 20px;
-      border-radius: 999px;
-      cursor:pointer;
-      font-size:.85rem;
-      font-weight:600;
+    .lang-switch button {
+      background: transparent;
+      border: 1px solid var(--silver-dark);
+      color: var(--silver-mid);
+      padding: 6px 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.3s ease;
       text-transform: uppercase;
-      transition: all .3s ease;
     }
-    .lang-switch button:hover{
-      border-color: var(--gold);
-      background: rgba(215,194,138,0.1);
+    .lang-switch button:hover {
+      border-color: #fff;
       color: #fff;
-      box-shadow: 0 0 15px rgba(215,194,138,0.1);
+      background: rgba(255,255,255,0.05);
     }
 
     /* Hero */
-    .hero{
-      padding: 140px 10% 100px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-      z-index:1;
+    .hero {
+      padding: 160px 10% 120px;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(155, 17, 30, 0.05) 0%, transparent 70%);
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(circle at 50% 30%, rgba(163,29,42,0.15) 0%, transparent 70%);
-      z-index:-1;
-    }
-
-    .hero h1{
-      margin: 0 0 20px;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      margin: 0 0 24px;
       font-weight: 700;
-      line-height: 1.1;
-      background: linear-gradient(to bottom, #fff 30%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      color: #ffffff;
+      text-shadow: 0 0 30px rgba(255,255,255,0.1);
     }
-    .hero p{
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--silver-mid);
+      max-width: 700px;
       margin: 0 auto;
-      max-width: 800px;
-      font-size: clamp(1rem, 1.5vw, 1.25rem);
-      color: rgba(255,255,255,.6);
       font-weight: 300;
-      letter-spacing: 1px;
     }
 
-    /* Section title */
-    .section-title{
-      text-align:center;
-      margin: 0 0 60px;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 2px;
-    }
-    .section-title::after{
-      content:"";
-      display:block;
-      width: 60px;
-      height: 2px;
-      margin: 20px auto 0;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
+    /* Content Layout */
+    .container { padding: 100px 10%; }
 
-    /* Services grid */
-    .services{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #ffffff;
       margin-bottom: 80px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+    .section-title::after {
+      content: "";
+      display: block; width: 40px; height: 1px;
+      background: var(--brand-main);
+      margin: 20px auto;
     }
 
-    .card{
-      position:relative;
-      padding: 40px 30px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(160deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.01) 100%);
-      border: 1px solid rgba(215,194,138,.1);
-      transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1);
-      overflow:hidden;
+    /* Cards */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
     }
-    .card::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(circle at top left, rgba(215,194,138,0.08), transparent 70%);
-      opacity:0; transition: opacity .4s ease;
+    .card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      padding: 50px 35px;
+      border: 1px solid var(--border-silver);
+      transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+      position: relative;
     }
-    .card:hover{
-      transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 20px rgba(163,29,42,0.1);
+    .card:hover {
+      border-color: var(--silver-mid);
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.04);
     }
-    .card:hover::after{ opacity: 1; }
-
-    .card h3{
-      margin: 0 0 15px;
-      font-size: 1.3rem;
-      color: var(--gold-bright);
-      font-weight: 600;
+    .card h3 {
+      color: #ffffff;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
     }
-    .card p{
-      margin:0;
-      color: rgba(255,255,255,.65);
+    .card p {
+      color: var(--silver-dark);
       font-size: 0.95rem;
       line-height: 1.8;
     }
-
-    .highlight-text{
-      color: var(--gold);
-      font-weight: 600;
+    .highlight-text {
+      color: var(--silver-light);
+      border-bottom: 1px solid var(--brand-main);
     }
 
-    /* Contact */
-    .contact-section{
-      max-width: 720px;
+    /* Form */
+    .contact-section {
+      max-width: 650px;
       margin: 0 auto;
-      padding: 50px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(45,11,14,.4) 0%, rgba(10,5,5,.8) 100%);
-      border: 1px solid rgba(215,194,138,.15);
-      box-shadow: var(--shadow);
+      padding: 60px;
+      border: 1px solid var(--border-silver);
+      background: rgba(255,255,255,0.01);
     }
-
-    .form-group{ margin-bottom: 24px; }
-    .form-group label{
-      display:block;
+    .form-group label {
+      color: var(--silver-mid);
+      font-size: 0.8rem;
       margin-bottom: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .form-group input, .form-group textarea{
-      width:100%;
-      padding: 14px 16px;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(0,0,0,.3);
-      color: #fff;
-      outline:none;
-      transition: all .3s ease;
-    }
-    .form-group input:focus, .form-group textarea:focus{
-      border-color: var(--gold);
-      background: rgba(163,29,42,0.05);
-      box-shadow: 0 0 15px rgba(215,194,138,0.1);
-    }
-
-    .submit-btn{
-      width:100%;
-      padding: 16px;
-      border: 1px solid var(--gold);
-      border-radius: 999px;
-      cursor:pointer;
-      font-size: 1rem;
-      font-weight: 700;
+      display: block;
       letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #000;
-      background: linear-gradient(90deg, var(--gold-bright), var(--gold));
-      transition: all .3s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
-    .submit-btn:hover{
-      transform: translateY(-2px);
-      filter: brightness(1.1);
-      box-shadow: 0 15px 30px rgba(215,194,138,0.2);
+    .form-group input, .form-group textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border-silver);
+      color: #fff;
+      padding: 12px 0;
+      margin-bottom: 30px;
+      outline: none;
+      transition: border-color 0.3s;
     }
-    .submit-btn:active{ transform: translateY(0); }
-    .submit-btn:disabled{ opacity: 0.5; cursor: not-allowed; }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--brand-main);
+    }
 
-    /* Footer */
-    footer{
-      margin-top: 100px;
-      padding: 50px 10%;
-      text-align:center;
-      color: rgba(255,255,255,.4);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(215,194,138,.1);
-      background: rgba(10,5,5,0.8);
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #d1d1d6 100%); /* Silver metallic button */
+      color: #000;
+      border: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      transform: scale(1.01);
+    }
+
+    footer {
+      padding: 60px 10%;
+      border-top: 1px solid var(--border-silver);
+      text-align: center;
+      color: var(--silver-dark);
+      font-size: 0.8rem;
       letter-spacing: 1px;
     }
 
-    /* Language toggle */
-    .lang-en{ display:none; }
+    .lang-en { display: none; }
 
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; scroll-behavior:auto !important; }
+    @media (max-width: 768px) {
+      .container { padding: 60px 6%; }
+      .contact-section { padding: 30px; }
     }
   </style>
 </head>
@@ -309,11 +235,11 @@
 <body>
   <nav>
     <div class="logo">
-      <span class="lang-zh">麵麵科技有限公司</span>
+      <span class="lang-zh">麵麵科技</span>
       <span class="lang-en">MienMien Tech</span>
     </div>
     <div class="lang-switch">
-      <button onclick="switchLang()">Language / 語言</button>
+      <button onclick="switchLang()">EN / 中文</button>
     </div>
   </nav>
 
@@ -333,45 +259,45 @@
         <h3 class="lang-zh"><span class="highlight-text">美元穩定幣 / 美元</span> 跨市套利</h3>
         <h3 class="lang-en"><span class="highlight-text">USDT(USDC) / USD</span> Cross-Market Arbitrage</h3>
         <p class="lang-zh">精準監控全球交易平台中 <span class="highlight-text">美元穩定幣</span> 與美元的微小溢價差異。透過高頻算法，在穩定幣脫鉤或溢價時快速進場，鎖定低風險收益。</p>
-        <p class="lang-en">Precision monitoring of premium differences between <span class="highlight-text">USDT(USDC)</span> and USD across global platforms. Using algorithms to capture gains during stablecoin fluctuations.</p>
+        <p class="lang-en">Precision monitoring of premium differences between <span class="highlight-text">USDT(USDC)</span> and USD across global platforms.</p>
       </div>
 
       <div class="card">
         <h3 class="lang-zh">全球法幣對沖</h3>
         <h3 class="lang-en">Global Fiat Hedging</h3>
         <p class="lang-zh">利用各國銀行間的即時匯差，透過多節點部署實現自動化交易，有效避開單一貨幣波動風險。</p>
-        <p class="lang-en">Capitalizing on real-time bank exchange rate gaps via multi-node deployment to automate trades and mitigate single currency risks.</p>
+        <p class="lang-en">Capitalizing on real-time bank exchange rate gaps via multi-node deployment to automate trades.</p>
       </div>
 
       <div class="card">
         <h3 class="lang-zh">AI 自動化風控</h3>
         <h3 class="lang-en">AI Automated Risk Control</h3>
         <p class="lang-zh">24/7 全天候監控流動性深度與市場深度，確保套利路徑在極端行情下依然保有高度安全性。</p>
-        <p class="lang-en">24/7 monitoring of liquidity and market depth, ensuring arbitrage paths remain highly secure during extreme volatility.</p>
+        <p class="lang-en">24/7 monitoring of liquidity and market depth, ensuring arbitrage paths remain highly secure.</p>
       </div>
     </div>
 
-    <h2 class="section-title lang-zh" id="contact">聯絡我們</h2>
-    <h2 class="section-title lang-en" id="contact-en">Contact Us</h2>
+    <h2 class="section-title lang-zh" style="margin-top:120px;" id="contact">聯絡我們</h2>
+    <h2 class="section-title lang-en" style="margin-top:120px;" id="contact-en">Contact Us</h2>
 
     <div class="contact-section">
       <form id="contactForm">
         <div class="form-group">
-          <label class="lang-zh">姓名</label>
-          <label class="lang-en">Name</label>
-          <input type="text" id="name" placeholder="Full Name" required />
+          <label class="lang-zh">姓名 NAME</label>
+          <label class="lang-en">NAME</label>
+          <input type="text" id="name" required />
         </div>
 
         <div class="form-group">
-          <label class="lang-zh">電子信箱</label>
-          <label class="lang-en">Email</label>
-          <input type="email" id="email" placeholder="email@example.com" required />
+          <label class="lang-zh">電子信箱 EMAIL</label>
+          <label class="lang-en">EMAIL</label>
+          <input type="email" id="email" required />
         </div>
 
         <div class="form-group">
-          <label class="lang-zh">訊息</label>
-          <label class="lang-en">Message</label>
-          <textarea id="message" placeholder="How can we help you?"></textarea>
+          <label class="lang-zh">訊息 MESSAGE</label>
+          <label class="lang-en">MESSAGE</label>
+          <textarea id="message" rows="1"></textarea>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">
@@ -388,11 +314,9 @@
 
   <script>
     let currentLang = "zh";
-
     function switchLang() {
       const zhElements = document.querySelectorAll(".lang-zh");
       const enElements = document.querySelectorAll(".lang-en");
-
       if (currentLang === "zh") {
         zhElements.forEach((el) => (el.style.display = "none"));
         enElements.forEach((el) => (el.style.display = "block"));
@@ -412,7 +336,7 @@
       e.preventDefault();
       btn.disabled = true;
       const originalContent = btn.innerHTML;
-      btn.innerHTML = currentLang === "zh" ? "處理中..." : "Processing...";
+      btn.innerHTML = currentLang === "zh" ? "傳送中..." : "SENDING...";
 
       const data = {
         name: document.getElementById("name").value,
@@ -423,23 +347,17 @@
       fetch(scriptURL, {
         method: "POST",
         mode: "no-cors",
-        cache: "no-cache",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       })
-        .then(() => {
-          const successMsg = currentLang === "zh" ? "感謝您的聯絡！我們將盡快回覆。" : "Thank you! We will get back to you shortly.";
-          alert(successMsg);
-          form.reset();
-        })
-        .catch((error) => {
-          console.error("Error!", error.message);
-          alert("Error sending message.");
-        })
-        .finally(() => {
-          btn.disabled = false;
-          btn.innerHTML = originalContent;
-        });
+      .then(() => {
+        alert(currentLang === "zh" ? "感謝您的聯絡。" : "Message sent.");
+        form.reset();
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalContent;
+      });
     });
   </script>
 </body>
