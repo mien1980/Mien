@@ -7,11 +7,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* Ultra Luxury Dark Red & Gold */
   --black:#070304;
   --deep-red:#120607;
   --wine:#1c0b0d;
@@ -93,21 +92,63 @@ nav{
   text-align:center;
   position:relative;
 }
-.hero::after{
-  content:"";
-  position:absolute;
-  width:620px; height:620px;
-  top:-360px; left:50%;
-  transform:translateX(-50%);
-  background:radial-gradient(circle, rgba(203,180,122,.18), transparent 65%);
-  z-index:-1;
+
+/* ===== 金色能量光環完整版（僅主標） ===== */
+.hero h1{
+  position:relative;
+  display:inline-block;
+  margin:0 auto 18px;
+  padding:22px 42px;
+
+  font-size:clamp(2rem,4.2vw,3.25rem);
+  font-weight:800;
+  letter-spacing:.8px;
+  color:rgba(255,255,255,.95);
+
+  background:linear-gradient(
+    180deg,
+    rgba(12,4,6,.82),
+    rgba(6,2,3,.88)
+  );
+
+  border-radius:18px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(203,180,122,.18),
+    0 30px 80px rgba(0,0,0,.75);
+
+  text-shadow:0 8px 28px rgba(0,0,0,.65);
+  z-index:1;
 }
 
-.hero h1{
-  margin:0 0 14px;
-  font-size:clamp(2rem,4.2vw,3.25rem);
-  text-shadow:0 18px 40px rgba(0,0,0,.65);
+.hero h1::before{
+  content:"";
+  position:absolute;
+  inset:-45px -90px;
+  z-index:-1;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(203,180,122,.38),
+      rgba(203,180,122,.18) 35%,
+      transparent 70%
+    );
+  filter:blur(2px);
 }
+
+.hero h1::after{
+  content:"";
+  position:absolute;
+  inset:-70px -120px;
+  z-index:-2;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(58,15,20,.35),
+      transparent 75%
+    );
+}
+
 .hero p{
   max-width:860px;
   margin:0 auto;
@@ -197,9 +238,6 @@ nav{
   cursor:pointer;
   box-shadow:0 18px 40px rgba(203,180,122,.35);
 }
-.submit-btn:hover{
-  transform:translateY(-2px);
-}
 
 footer{
   margin-top:100px;
@@ -241,49 +279,49 @@ footer{
     <div class="card">
       <h3 class="lang-zh"><span class="highlight-text">美元穩定幣 / 美元</span> 跨市套利</h3>
       <h3 class="lang-en"><span class="highlight-text">USDT(USDC) / USD</span> Cross-Market Arbitrage</h3>
-      <p class="lang-zh">精準監控全球交易平台中 <span class="highlight-text">美元穩定幣</span> 與美元的微小溢價差異。透過高頻算法，在穩定幣脫鉤或溢價時快速進場，鎖定低風險收益。</p>
-      <p class="lang-en">Precision monitoring of premium differences between <span class="highlight-text">USDT(USDC)</span> and USD across global platforms. Using algorithms to capture gains during stablecoin fluctuations.</p>
+      <p class="lang-zh">精準監控全球交易平台中美元穩定幣與美元的微小溢價差異，在脫鉤或溢價時快速進場，鎖定低風險收益。</p>
+      <p class="lang-en">Precision monitoring of premium gaps between stablecoins and USD across global platforms.</p>
     </div>
 
     <div class="card">
       <h3 class="lang-zh">全球法幣對沖</h3>
       <h3 class="lang-en">Global Fiat Hedging</h3>
-      <p class="lang-zh">利用各國銀行間的即時匯差，透過多節點部署實現自動化交易，有效避開單一貨幣波動風險。</p>
-      <p class="lang-en">Capitalizing on real-time bank exchange rate gaps via multi-node deployment to automate trades and mitigate single currency risks.</p>
+      <p class="lang-zh">透過多國銀行與支付節點，分散單一貨幣風險，提升資金調度效率。</p>
+      <p class="lang-en">Hedging fiat exposure through multi-country banking and payment nodes.</p>
     </div>
 
     <div class="card">
       <h3 class="lang-zh">AI 自動化風控</h3>
       <h3 class="lang-en">AI Automated Risk Control</h3>
-      <p class="lang-zh">24/7 全天候監控流動性深度與市場深度，確保套利路徑在極端行情下依然保有高度安全性。</p>
-      <p class="lang-en">24/7 monitoring of liquidity and market depth, ensuring arbitrage paths remain highly secure during extreme volatility.</p>
+      <p class="lang-zh">全天候監控市場深度與流動性，確保套利路徑在極端行情下依然穩定。</p>
+      <p class="lang-en">24/7 monitoring of liquidity and market depth for secure arbitrage paths.</p>
     </div>
   </div>
 
-  <h2 class="section-title lang-zh" id="contact">聯絡我們</h2>
-  <h2 class="section-title lang-en" id="contact-en">Contact Us</h2>
+  <h2 class="section-title lang-zh">聯絡我們</h2>
+  <h2 class="section-title lang-en">Contact Us</h2>
 
   <div class="contact-section">
-    <form id="contactForm">
+    <form>
       <div class="form-group">
         <label class="lang-zh">姓名</label>
         <label class="lang-en">Name</label>
-        <input type="text" id="name" required />
+        <input type="text" />
       </div>
 
       <div class="form-group">
         <label class="lang-zh">電子信箱</label>
         <label class="lang-en">Email</label>
-        <input type="email" id="email" required />
+        <input type="email" />
       </div>
 
       <div class="form-group">
         <label class="lang-zh">訊息</label>
         <label class="lang-en">Message</label>
-        <textarea id="message"></textarea>
+        <textarea></textarea>
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn">
+      <button type="submit" class="submit-btn">
         <span class="lang-zh">送出訊息</span>
         <span class="lang-en">Send Message</span>
       </button>
